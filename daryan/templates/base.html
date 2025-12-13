@@ -8,11 +8,11 @@
     <title>{% block title %} home {% endblock title %}</title>
 </head>
 <body>
-    {% include 'inc/navbar.html' %}
+    {% include 'inc/header.html' %}
     {% include 'inc/messages.html' %}
-    {% block context %}
+    {% block content %}
       
-    {% endblock context %}
+    {% endblock content %}
     {% include 'inc/footer.html' %}
 </body>
 </html>
