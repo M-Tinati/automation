@@ -1,0 +1,289 @@
+{% extends "base.html" %}
+
+{% block title %}داشبورد{% endblock %}
+
+{% block content %}
+<div class="antialiased bg-gray-50 dark:bg-gray-900">
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
+      <div class="flex flex-wrap justify-between items-center">
+        <div class="flex justify-start items-center">
+          <button
+            data-drawer-target="drawer-navigation"
+            data-drawer-toggle="drawer-navigation"
+            aria-controls="drawer-navigation"
+            class="p-2 mr-2 text-gray-600 rounded-lg cursor-pointer md:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:ring-2 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+          >
+            <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="sr-only">Toggle sidebar</span>
+          </button>
+        </div>
+
+        <div class="flex items-center lg:order-2 space-x-3 rtl:space-x-reverse">
+          <!-- Notifications -->
+          <button
+            type="button"
+            data-dropdown-toggle="notification-dropdown"
+            class="p-2 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+          >
+            <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path>
+            </svg>
+            <span class="sr-only">نمایش اعلان‌ها</span>
+          </button>
+
+          <!-- User menu - فقط آیکون آدمک بدون عکس -->
+          <button
+            type="button"
+            class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+            id="user-menu-button"
+            aria-expanded="false"
+            data-dropdown-toggle="dropdown"
+          >
+            <span class="sr-only">منوی کاربر</span>
+            <svg class="w-8 h-8 rounded-full text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside
+      class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+      aria-label="Sidenav"
+      id="drawer-navigation"
+    >
+      <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
+        <ul class="space-y-2">
+          <li>
+            <a href="#" data-section="received" class="sidebar-link flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group bg-gray-200 dark:bg-gray-700">
+              <svg class="w-6 h-6 text-gray-500 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3 2h10v8H5V7z"/>
+              </svg>
+              <span class="ml-3">نامه‌های دریافتی</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-section="sent" class="sidebar-link flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              <svg class="w-6 h-6 text-gray-500 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm14 0L10 9 4 5v10h12V5z"/>
+              </svg>
+              <span class="ml-3">نامه‌های ارسالی</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-section="send" class="sidebar-link flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              <svg class="w-6 h-6 text-gray-500 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.707 2.293a1 1 0 00-1.414 0L2 13.586V18h4.414l11.293-11.293a1 1 0 000-1.414l-3-3zM5 14l8-8 3 3-8 8H5v-3z"/>
+              </svg>
+              <span class="ml-3">ارسال پیام</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-section="documents" class="sidebar-link flex items-center p-2 text-base font-medium text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              <svg class="w-6 h-6 text-gray-500 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm0 2h12v8H4V6zm2 2v6h8V8H6z"/>
+              </svg>
+              <span class="ml-3">اسناد ذخیره شده</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="p-4 md:ml-64 h-auto pt-20">
+      <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
+
+        {% if messages %}
+          {% for message in messages %}
+            <div class="mb-4 p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200{% else %}bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200{% endif %}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        <!-- نامه‌های دریافتی -->
+        <div id="section-received" class="content-section">
+          <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">نامه‌های دریافتی</h2>
+          {% if received_messages %}
+            <div class="space-y-4">
+              {% for msg in received_messages %}
+                <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition {% if not msg.is_read %}border-l-4 border-blue-500{% endif %}" 
+                     onclick="openMessageModal('از: {{ msg.sender.get_full_name|default:msg.sender.username }}', '{{ msg.subject|escapejs }}', '{{ msg.body|escapejs }}', '{{ msg.created_at|date:"d F Y - H:i" }}')">
+                  <div class="flex justify-between items-start">
+                    <div>
+                      <p class="font-semibold text-gray-900 dark:text-white">از: {{ msg.sender.get_full_name|default:msg.sender.username }}</p>
+                      <p class="text-sm text-gray-600 dark:text-gray-400">موضوع: {{ msg.subject }}</p>
+                      <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">{{ msg.body|truncatechars:100 }}</p>
+                    </div>
+                    <span class="text-sm text-gray-500">{{ msg.created_at|timesince }} پیش</span>
+                  </div>
+                  {% if not msg.is_read %}
+                    <span class="inline-block mt-2 px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900 dark:text-blue-200">جدید</span>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <p class="text-center text-gray-500 dark:text-gray-400">هنوز هیچ نامه‌ای دریافت نکرده‌اید.</p>
+          {% endif %}
+        </div>
+
+        <!-- نامه‌های ارسالی -->
+        <div id="section-sent" class="content-section hidden">
+          <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">نامه‌های ارسالی</h2>
+          {% if sent_messages %}
+            <div class="space-y-4">
+              {% for msg in sent_messages %}
+                <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition"
+                     onclick="openMessageModal('به: {{ msg.receiver.get_full_name|default:msg.receiver.username }}', '{{ msg.subject|escapejs }}', '{{ msg.body|escapejs }}', '{{ msg.created_at|date:"d F Y - H:i" }}')">
+                  <div class="flex justify-between items-start">
+                    <div>
+                      <p class="font-semibold text-gray-900 dark:text-white">به: {{ msg.receiver.get_full_name|default:msg.receiver.username }}</p>
+                      <p class="text-sm text-gray-600 dark:text-gray-400">موضوع: {{ msg.subject }}</p>
+                      <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">{{ msg.body|truncatechars:100 }}</p>
+                    </div>
+                    <span class="text-sm text-gray-500">{{ msg.created_at|timesince }} پیش</span>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <p class="text-center text-gray-500 dark:text-gray-400">هنوز هیچ نامه‌ای ارسال نکرده‌اید.</p>
+          {% endif %}
+        </div>
+
+        <!-- ارسال پیام -->
+        <div id="section-send" class="content-section hidden">
+          <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">ارسال پیام جدید</h2>
+          <form method="post" action="{% url 'home:send_message' %}">
+            {% csrf_token %}
+            <div class="mb-5">
+              <label for="receiver" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">گیرنده</label>
+              <select id="receiver" name="receiver" required class="w-full px-4 py-2.5 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <option value="">-- انتخاب گیرنده --</option>
+                {% for user in users %}
+                  <option value="{{ user.id }}">{{ user.get_full_name|default:user.username }} ({{ user.username }})</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="mb-5">
+              <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">موضوع</label>
+              <input type="text" id="subject" name="subject" required class="w-full px-4 py-2.5 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="موضوع پیام را وارد کنید">
+            </div>
+
+            <div class="mb-6">
+              <label for="body" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">متن پیام</label>
+              <textarea id="body" name="body" rows="8" required class="w-full px-4 py-2.5 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="متن پیام خود را بنویسید..."></textarea>
+            </div>
+
+            <button type="submit" class="px-6 py-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
+              ارسال پیام
+            </button>
+          </form>
+        </div>
+
+        <!-- اسناد ذخیره شده -->
+        <div id="section-documents" class="content-section hidden">
+          <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">اسناد ذخیره شده</h2>
+          
+          <!-- فرم آپلود جدید -->
+          <form method="post" action="{% url 'home:save_document' %}" enctype="multipart/form-data" class="mb-8">
+            {% csrf_token %}
+            <div class="mb-4">
+              <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">عنوان/یادداشت (اختیاری)</label>
+              <input type="text" id="title" name="title" class="w-full px-4 py-2.5 text-sm bg-gray-50 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="مثلاً: گزارش ماهانه">
+            </div>
+            <div class="mb-4">
+              <label for="files" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">انتخاب فایل(ها)</label>
+              <input type="file" id="files" name="files" multiple accept=".pdf,.doc,.docx,.jpg,.png,.zip" class="w-full px-4 py-2.5 text-sm bg-gray-50 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+              <p class="text-xs text-gray-500 mt-1">حداکثر ۱۰ مگابایت – چند فایل همزمان مجاز است</p>
+            </div>
+            <button type="submit" class="px-6 py-3 text-white bg-green-600 rounded-lg hover:bg-green-700">ذخیره سند</button>
+          </form>
+
+          <!-- لیست اسناد -->
+          {% if saved_documents %}
+            <div class="space-y-4">
+              {% for doc in saved_documents %}
+                <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg flex justify-between items-center">
+                  <div>
+                    <p class="font-semibold text-gray-900 dark:text-white">{{ doc.title|default:"بدون عنوان" }}</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                      <a href="{{ doc.file.url }}" target="_blank" class="text-blue-600 hover:underline">{{ doc.file.name|truncatechars:40 }}</a>
+                    </p>
+                    <p class="text-xs text-gray-500">{{ doc.uploaded_at|timesince }} پیش</p>
+                  </div>
+                  <span class="text-sm text-gray-500">{{ doc.file.size|filesizeformat }}</span>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <p class="text-center text-gray-500 dark:text-gray-400">هنوز هیچ سندی ذخیره نکرده‌اید.</p>
+          {% endif %}
+        </div>
+
+      </div>
+    </main>
+
+    <!-- مودال نمایش جزئیات پیام -->
+    <div id="messageModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-screen overflow-y-auto">
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <h3 id="modalTitle" class="text-xl font-bold text-gray-900 dark:text-white"></h3>
+            <button onclick="closeMessageModal()" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+          <p id="modalSender" class="text-sm text-gray-600 dark:text-gray-400 mb-2"></p>
+          <p id="modalDate" class="text-sm text-gray-500 dark:text-gray-500 mb-4"></p>
+          <div class="border-t pt-4">
+            <p id="modalBody" class="text-gray-800 dark:text-gray-200 whitespace-pre-wrap"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openMessageModal(sender, subject, body, date) {
+      document.getElementById('modalSender').textContent = sender;
+      document.getElementById('modalTitle').textContent = subject;
+      document.getElementById('modalBody').textContent = body;
+      document.getElementById('modalDate').textContent = date;
+      document.getElementById('messageModal').classList.remove('hidden');
+    }
+
+    function closeMessageModal() {
+      document.getElementById('messageModal').classList.add('hidden');
+    }
+
+    // بستن مودال با کلیک بیرون از پنجره
+    document.getElementById('messageModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeMessageModal();
+      }
+    });
+
+    // اسکریپت سوئیچ بخش‌های سایدبار
+    document.querySelectorAll('.sidebar-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('bg-gray-200', 'dark:bg-gray-700'));
+        this.classList.add('bg-gray-200', 'dark:bg-gray-700');
+        document.querySelectorAll('.content-section').forEach(sec => sec.classList.add('hidden'));
+        const sectionId = this.getAttribute('data-section');
+        document.getElementById('section-' + sectionId).classList.remove('hidden');
+      });
+    });
+  </script>
+{% endblock %}
