@@ -21,11 +21,7 @@ DEBUG = True
 #     '192.168.1.107',
 # ]
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '192.168.2.148',  # IP سیستم سرور
-]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
