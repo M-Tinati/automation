@@ -73,11 +73,11 @@ WSGI_APPLICATION = 'daryan.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'office_automation',
-        'USER' : 'django_user',
-        'PASSWORD' : 'tinati',
-        'HOST' : 'localhost',
-        'PORT' : '5432',
+        'NAME': 'office_automation',              # نام دیتابیس
+        'USER': 'django_user',                     # یوزر دیتابیس
+        'PASSWORD': '2DTu4E2s8lUzyt8mIRvGAfFPHHND9n4T',  # پسورد
+        'HOST': 'dpg-d54fr33uibrs738fcdhg-a',     # Hostname Render
+        'PORT': '5432',                            # پورت
     }
 }
 
