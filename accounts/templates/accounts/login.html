@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}ورود به سیستم{% endblock %}
+
+{% block content %}
+<section class="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center px-4 py-8">
+  <div class="w-full max-w-md">
+    <!-- لوگو / عنوان -->
+    <div class="text-center mb-10">
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+        اتوماسیون اداری دریان پالاست
+      </h1>
+      <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+        برای ادامه، لطفاً وارد حساب کاربری خود شوید
+      </p>
+    </div>
+
+    <!-- کارت فرم ورود -->
+    <div class="bg-white rounded-xl shadow-lg dark:bg-gray-800 dark:border dark:border-gray-700">
+      <div class="p-8 sm:p-10">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-8 text-center">
+          ورود به سیستم
+        </h2>
+
+        <form method="post" class="space-y-6">
+          {% csrf_token %}
+
+          <!-- فیلد نام کاربری -->
+          <div>
+            <label for="{{ form.username.id_for_label }}"
+                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              {{ form.username.label }}
+            </label>
+            {{ form.username }}
+            {% if form.username.errors %}
+              <p class="mt-1 text-sm text-red-600 dark:text-red-500">
+                {{ form.username.errors }}
+              </p>
+            {% endif %}
+          </div>
+
+          <!-- فیلد رمز عبور -->
+          <div>
+            <label for="{{ form.password.id_for_label }}"
+                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              {{ form.password.label }}
+            </label>
+            {{ form.password }}
+            {% if form.password.errors %}
+              <p class="mt-1 text-sm text-red-600 dark:text-red-500">
+                {{ form.password.errors }}
+              </p>
+            {% endif %}
+          </div>
+
+          <!-- دکمه ورود -->
+          <button type="submit"
+                  class="w-full py-3 px-5 text-white font-medium text-sm rounded-lg bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 transition duration-200">
+            ورود
+          </button>
+        </form>
+
+        <!-- پیام‌های عمومی فرم (در صورت وجود) -->
+        {% if form.non_field_errors %}
+          <div class="mt-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+            {% for error in form.non_field_errors %}
+              <p class="text-sm text-red-800 dark:text-red-300">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- فوتر کوچک (اختیاری) -->
+    <p class="mt-8 text-center text-xs text-gray-500 dark:text-gray-400">
+      © {{ now|date:"Y" }} تیم توسعه دریان پلاست. تمامی حقوق محفوظ است.
+    </p>
+  </div>
+</section>
+{% endblock %}
